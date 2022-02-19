@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap');
+
+body{
+    font-family: 'Inter', sans-serif;
+}
+#fps{
+    border: 1px solid black;
+}
+
+#container{
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+}
+
+:not(svg){
+    transform-origin: center;
+}
