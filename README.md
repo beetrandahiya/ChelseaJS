@@ -47,13 +47,14 @@ Everything you make in ChelseaJS is a SVG.
 <img src='assets/Codepen.png' width="48px" hspace="8" >
 </a> 
 <a href="https://www.github.com/beetrandahiya">
-<img src='assets/github.svg' width="48px" hspace="8" >
+<img src='assets/github_logo.png' width="48px" hspace="8" >
 </a>
 </div>
 </div>
+  
 
-## Issues and Suggestions
-[You can suggest features and point out bugs here](https://github.com/beetrandahiya/Sidus/issues)
+# Issues and Suggestions
+[You can suggest features and point out bugs here](https://github.com/beetrandahiya/ChelseaJS/issues)
 
 ## License
 This project is licensed under the [MIT License](../blob/master/LICENSE)
