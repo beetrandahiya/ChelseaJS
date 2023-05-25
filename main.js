@@ -7,6 +7,10 @@ function setCanvas(element){
     svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttributeNS(null, "width", "100%");
     svg.setAttributeNS(null, "height", "100%");
+    //for definitions like gradients and filters
+    defs=document.createElementNS("http://www.w3.org/2000/svg", "defs");
+    svg.appendChild(defs);
+    console.log(defs);
     elem.appendChild(svg);
     WIDTH =svg.clientWidth;
     HEIGHT =svg.clientHeight;
@@ -1285,3 +1289,84 @@ function HSLtoHex(h,s,l) {
 
 
 /////////////////////////////////////////////////////////////////
+
+class Gradient{
+    constructor(style, colors, spread_method, id){
+        this.defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+        this.style=style;
+        this.spread_method=spread_method||"pad";
+        if(style=="horizontal"){
+            this.gradient=document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+            this.gradient.setAttributeNS(null,"x1","0%");
+            this.gradient.setAttributeNS(null,"y1","0%");
+            this.gradient.setAttributeNS(null,"x2","100%");
+            this.gradient.setAttributeNS(null,"y2","0%");
+            this.gradient.setAttributeNS(null,"spreadMethod",this.spread_method);
+            this.gradient.setAttributeNS(null,"id",id);
+            for(var i=0;i<colors.length;i++){
+                var stop=document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                if(typeof colors[i]=="string"){
+                    stop.setAttributeNS(null,"offset",i*100/colors.length+"%");
+                    stop.setAttributeNS(null,"stop-color",colors[i]);
+                }
+                else if(typeof colors[i]=="object"){
+                    stop.setAttributeNS(null,"offset",colors[i][0]);
+                    stop.setAttributeNS(null,"stop-color",colors[i][1]);
+                }
+                this.gradient.appendChild(stop);
+            }
+            this.gradient.setAttributeNS(null,"gradientUnits","userSpaceOnUse");
+            this.defs.appendChild(this.gradient);
+        }
+        else if(style=="vertical"){
+            this.gradient=document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+            this.gradient.setAttributeNS(null,"x1","0%");
+            this.gradient.setAttributeNS(null,"y1","0%");
+            this.gradient.setAttributeNS(null,"x2","0%");
+            this.gradient.setAttributeNS(null,"y2","100%");
+            this.gradient.setAttributeNS(null,"spreadMethod",this.spread_method);
+            this.gradient.setAttributeNS(null,"id",id);
+            for(var i=0;i<colors.length;i++){
+                var stop=document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                if(typeof colors[i]=="string"){
+                    stop.setAttributeNS(null,"offset",i*100/colors.length+"%");
+                    stop.setAttributeNS(null,"stop-color",colors[i]);
+                }
+                else if(typeof colors[i]=="object"){
+                    stop.setAttributeNS(null,"offset",colors[i][0]);
+                    stop.setAttributeNS(null,"stop-color",colors[i][1]);
+                }
+                this.gradient.appendChild(stop);
+            }
+            this.gradient.setAttributeNS(null,"gradientUnits","userSpaceOnUse");
+            this.defs.appendChild(this.gradient);
+        }
+        else if(style=="radial"){
+            this.gradient=document.createElementNS("http://www.w3.org/2000/svg", "radialGradient");
+            this.gradient.setAttributeNS(null,"cx","50%");
+            this.gradient.setAttributeNS(null,"cy","50%");
+            this.gradient.setAttributeNS(null,"r","50%");
+            this.gradient.setAttributeNS(null,"spreadMethod",this.spread_method);
+            this.gradient.setAttributeNS(null,"id",id);
+            for(var i=0;i<colors.length;i++){
+                var stop=document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                if(typeof colors[i]=="string"){
+                    stop.setAttributeNS(null,"offset",i*100/colors.length+"%");
+                    stop.setAttributeNS(null,"stop-color",colors[i]);
+                }
+                else if(typeof colors[i]=="object"){
+                    stop.setAttributeNS(null,"offset",colors[i][0]);
+                    stop.setAttributeNS(null,"stop-color",colors[i][1]);
+                }
+                this.gradient.appendChild(stop);
+            }
+            this.gradient.setAttributeNS(null,"gradientUnits","userSpaceOnUse");
+            this.defs.appendChild(this.gradient);
+        }
+        //add defs to svg
+        svg.appendChild(this.defs);
+        return this.gradient;
+
+
+    }
+}
