@@ -210,6 +210,8 @@ function marchingSquares(zFunc, c, xMin, xMax, yMin, yMax, resolution) {
 
 
 function quadtree(zFunc, c, x, y, dx, dy, depth) {
+	//draw the rectangle around the quadtree
+	new rect(x,y,dx,dy,"#0001",0,"#0004",1);
 	var SEARCH_DEPTH = 1;
 var PLOT_DEPTH = 8;
 	//console.log("quadtree");
@@ -343,6 +345,7 @@ function addSegment(zFunc, c, x, y, dx, dy) {
 		var p1=points[i][0];
 		var p2=points[i][1];
 		new line(p1[0], p1[1], p2[0], p2[1],"#000",2);
+		
 	}
 	return points;
 }
