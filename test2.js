@@ -349,3 +349,21 @@ function addSegment(zFunc, c, x, y, dx, dy) {
 	}
 	return points;
 }
+
+
+
+//check speed difference in vanilla js math and mathjs
+function mathTest() {
+	t0=performance.now();
+	for (var i = 0; i < 100000; i++) {
+		Math.sin(i);
+	}
+	t1=performance.now();
+	console.log("Math.sin took " + (t1 - t0) + " milliseconds.");
+	t0=performance.now();
+	for (var i = 0; i < 100000; i++) {
+		math.evaluate("sin("+i+")");
+	}
+	t1=performance.now();
+	console.log("math.sin took " + (t1 - t0) + " milliseconds.");
+}
