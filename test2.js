@@ -252,6 +252,7 @@ function hasSegment(zFunc, c, x, y, dx, dy) {
 	var z4 = zFunc(x + dx, y + dy); // top right corner
 	var z8 = zFunc(x, y + dy); // top left corner
 	var n = 0;
+	
 	if (z1 > c) n += 1;
 	if (z2 > c) n += 2;
 	if (z4 > c) n += 4;
